@@ -1,0 +1,62 @@
+<ion-view view-title="Races">
+
+	<ion-nav-buttons side="right">
+
+		<button class="button" ng-click="openPopover($event)">
+			Options
+		</button>
+	</ion-nav-buttons>
+
+
+	<ion-content>
+
+		<script id="my-popover.html" type="text/ng-template">
+
+			<ion-popover-view>
+				<ion-header-bar>
+					<h1 class="title">Search Filters</h1>
+				</ion-header-bar>
+				<ion-content>
+
+					<style>
+						.popover {
+							height: 200px;
+							width: 250px;
+						}
+					</style>
+
+					<select id="year" ng-model="Course" ng-options="n for n in [] | range:1950:2016" onchange="setYear(this.value);">
+						<option value=''>Select a Year</option>
+					</select>
+
+				</ion-content>
+
+			</ion-popover-view>
+
+
+		</script>
+
+
+		<div class="list card" ng-repeat="race in raceCal">
+
+		  <div class="item item-avatar">
+		    <img ng-src="img/flags/{{race.Circuit.Location.country}}.png">
+		    <h2>{{race.raceName}}</h2>
+		    <p>{{race.date}}</p>
+		  </div>
+
+		  <div>
+		    <img ng-src="img/tracks/{{race.Circuit.circuitId}}.png" width="100%">
+		  </div>
+
+		  <a class="item item-icon-left positive" width="10" href="{{race.Circuit.url}}">
+		    <i class="icon ion-link"></i>
+		    <small>{{race.Circuit.circuitName}}</small>
+		  </a>
+
+		</div>
+
+
+
+	</ion-content>
+</ion-view>

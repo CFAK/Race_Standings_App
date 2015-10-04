@@ -1,0 +1,82 @@
+<ion-view view-title="Leaderboard">
+
+
+	<ion-nav-buttons side="right">
+
+		<button class="button" ng-click="openPopover($event)">
+			Options
+		</button>
+	</ion-nav-buttons>
+
+
+	<ion-content>
+
+		<script id="my-popover.html" type="text/ng-template">
+
+			<ion-popover-view>
+				<ion-header-bar>
+					<h1 class="title">Search Filters</h1>
+				</ion-header-bar>
+				<ion-content>
+
+					<style>
+						.popover {
+							height: 200px;
+							width: 250px;
+						}
+					</style>
+
+					<ion-radio onchange="setBoard(1)"><small>Drivers Championship</small></ion-radio>
+					<ion-radio onchange="setBoard(2)"><small>Constructors Championship</small></ion-radio>
+
+					<select id="year" ng-model="Course" ng-options="n for n in [] | range:1950:2016" onchange="setYear(this.value);">
+						<option value=''>Select a Year</option>
+					</select>
+
+				</ion-content>
+
+			</ion-popover-view>
+
+
+		</script>
+
+		<!-- <div class="row header">
+									<div class="col col-10">Pos</div>
+									<div class="col col-50">Driver</div>
+									<div class="col col-10">Nation</div>
+									<div class="col col-10">Team</div>
+									<div class="col col-20">Points</div>
+							</div> -->
+
+		<div class = "driverStandings" ng-if="boardType==1">
+		<div class="row" ng-repeat="driver in driversList">
+			<div class="col col-10">{{$index+1}}</div>
+			<div class="col col-50">{{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}</div>
+			<div class="col col-12">
+				<img ng-src="img/flags/{{driver.Driver.nationality}}.png" />
+			</div>
+			<div class="col col-12">
+				<img ng-src="img/teams/{{driver.Constructors[0].constructorId}}.png" width="100%" />
+			</div>
+			<div class="col col-15">{{driver.points}}</div>
+		</div>
+	</div>
+
+	<div class = "constructorStandings" ng-if="boardType==2">
+	<div class="row" ng-repeat="team in teamList">
+		<div class="col col-10">{{$index+1}}</div>
+		<div class="col col-12">
+			<img ng-src="img/teams/{{team.Constructor.constructorId}}.png" width="100%"/>
+		</div>
+		<div class="col col-50">{{team.Constructor.name}}</div>
+		<div class="col col-12">
+			<img ng-src="img/flags/{{team.Constructor.nationality}}.png" width="100%"/>
+		</div>
+		<div class="col col-15">{{team.points}}</div>
+	</div>
+</div>
+
+
+
+	</ion-content>
+</ion-view>
