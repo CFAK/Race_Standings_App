@@ -15,7 +15,7 @@ angular.module('starter.services', [])
 
  API.getDriverStandings = function(year) {
   if (!year) {
-   year = 2015;
+   year = 2016;
   }
   console.log("Getting the driver leaderboard for ", year);
   return $http({
@@ -26,7 +26,7 @@ angular.module('starter.services', [])
 
 	API.getConstructorLeaderboard = function(year){
 		if(!year){
-			year = 2015;
+			year = 2016;
 		}
 		console.log("Getting constructor Standings for the year ", year);
 		return $http({
@@ -37,7 +37,7 @@ angular.module('starter.services', [])
 
 	API.getRaceSchedule = function(year){
 		if(!year){
-			year = 2015;
+			year = 2016;
 		}
 		console.log("Getting races for the year ", year);
 		return $http({
